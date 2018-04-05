@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="talentsModelStoreContainer" CdmEntityContainer="talentsEntities">
+    <EntitySetMapping Name="availabilities">
+      <EntityTypeMapping TypeName="talentsModel.availability">
+        <MappingFragment StoreEntitySet="availability">
+          <ScalarProperty Name="desc" ColumnName="desc" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="besttimes">
+      <EntityTypeMapping TypeName="talentsModel.besttime">
+        <MappingFragment StoreEntitySet="besttime">
+          <ScalarProperty Name="desc" ColumnName="desc" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="talents">
+      <EntityTypeMapping TypeName="talentsModel.talent">
+        <MappingFragment StoreEntitySet="talent">
+          <ScalarProperty Name="crudLink" ColumnName="crudLink" />
+          <ScalarProperty Name="others" ColumnName="others" />
+          <ScalarProperty Name="seo" ColumnName="seo" />
+          <ScalarProperty Name="illustrator" ColumnName="illustrator" />
+          <ScalarProperty Name="photophop" ColumnName="photophop" />
+          <ScalarProperty Name="salesforce" ColumnName="salesforce" />
+          <ScalarProperty Name="mysql" ColumnName="mysql" />
+          <ScalarProperty Name="sqlServer" ColumnName="sqlServer" />
+          <ScalarProperty Name="ruby" ColumnName="ruby" />
+          <ScalarProperty Name="python" ColumnName="python" />
+          <ScalarProperty Name="wordperss" ColumnName="wordperss" />
+          <ScalarProperty Name="vue" ColumnName="vue" />
+          <ScalarProperty Name="PHP" ColumnName="PHP" />
+          <ScalarProperty Name="majento" ColumnName="majento" />
+          <ScalarProperty Name="django" ColumnName="django" />
+          <ScalarProperty Name="cake" ColumnName="cake" />
+          <ScalarProperty Name="languageCPlusPlus" ColumnName="languageCPlusPlus" />
+          <ScalarProperty Name="languageC" ColumnName="languageC" />
+          <ScalarProperty Name="aspnetMVC" ColumnName="aspnetMVC" />
+          <ScalarProperty Name="java" ColumnName="java" />
+          <ScalarProperty Name="angularJs" ColumnName="angularJs" />
+          <ScalarProperty Name="jquery" ColumnName="jquery" />
+          <ScalarProperty Name="bootstrap" ColumnName="bootstrap" />
+          <ScalarProperty Name="css" ColumnName="css" />
+          <ScalarProperty Name="html" ColumnName="html" />
+          <ScalarProperty Name="ios" ColumnName="ios" />
+          <ScalarProperty Name="android" ColumnName="android" />
+          <ScalarProperty Name="ionic" ColumnName="ionic" />
+          <ScalarProperty Name="bankAccountNumber" ColumnName="bankAccountNumber" />
+          <ScalarProperty Name="bankAccountType" ColumnName="bankAccountType" />
+          <ScalarProperty Name="bankAgency" ColumnName="bankAgency" />
+          <ScalarProperty Name="bankCPF" ColumnName="bankCPF" />
+          <ScalarProperty Name="bankName" ColumnName="bankName" />
+          <ScalarProperty Name="bankYourName" ColumnName="bankYourName" />
+          <ScalarProperty Name="hourlySalary" ColumnName="hourlySalary" />
+          <ScalarProperty Name="id_besttime" ColumnName="id_besttime" />
+          <ScalarProperty Name="id_availability" ColumnName="id_availability" />
+          <ScalarProperty Name="portifolio" ColumnName="portifolio" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="linkedin" ColumnName="linkedin" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="skype" ColumnName="skype" />
+          <ScalarProperty Name="name_" ColumnName="name " />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

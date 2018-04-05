@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="talentsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="availability">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="desc" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="besttime">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="desc" Type="varchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="talent">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="name " Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="skype" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="phone" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="linkedin" Type="varchar" MaxLength="255" />
+    <Property Name="city" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="state" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="portifolio" Type="text" />
+    <Property Name="id_availability" Type="int" Nullable="false" />
+    <Property Name="id_besttime" Type="int" Nullable="false" />
+    <Property Name="hourlySalary" Type="smallint" Nullable="false" />
+    <Property Name="bankYourName" Type="varchar" MaxLength="255" />
+    <Property Name="bankName" Type="varchar" MaxLength="255" />
+    <Property Name="bankCPF" Type="varchar" MaxLength="11" />
+    <Property Name="bankAgency" Type="varchar" MaxLength="20" />
+    <Property Name="bankAccountType" Type="varchar" MaxLength="20" />
+    <Property Name="bankAccountNumber" Type="varchar" MaxLength="20" />
+    <Property Name="ionic" Type="tinyint" Nullable="false" />
+    <Property Name="android" Type="tinyint" Nullable="false" />
+    <Property Name="ios" Type="tinyint" Nullable="false" />
+    <Property Name="html" Type="tinyint" Nullable="false" />
+    <Property Name="css" Type="tinyint" Nullable="false" />
+    <Property Name="bootstrap" Type="tinyint" Nullable="false" />
+    <Property Name="jquery" Type="tinyint" Nullable="false" />
+    <Property Name="angularJs" Type="tinyint" Nullable="false" />
+    <Property Name="java" Type="tinyint" Nullable="false" />
+    <Property Name="aspnetMVC" Type="tinyint" Nullable="false" />
+    <Property Name="languageC" Type="tinyint" Nullable="false" />
+    <Property Name="languageCPlusPlus" Type="tinyint" Nullable="false" />
+    <Property Name="cake" Type="tinyint" Nullable="false" />
+    <Property Name="django" Type="tinyint" Nullable="false" />
+    <Property Name="majento" Type="tinyint" Nullable="false" />
+    <Property Name="PHP" Type="tinyint" Nullable="false" />
+    <Property Name="vue" Type="tinyint" Nullable="false" />
+    <Property Name="wordperss" Type="tinyint" Nullable="false" />
+    <Property Name="python" Type="tinyint" Nullable="false" />
+    <Property Name="ruby" Type="tinyint" Nullable="false" />
+    <Property Name="sqlServer" Type="tinyint" Nullable="false" />
+    <Property Name="mysql" Type="tinyint" Nullable="false" />
+    <Property Name="salesforce" Type="tinyint" Nullable="false" />
+    <Property Name="photophop" Type="tinyint" Nullable="false" />
+    <Property Name="illustrator" Type="tinyint" Nullable="false" />
+    <Property Name="seo" Type="tinyint" Nullable="false" />
+    <Property Name="others" Type="text" />
+    <Property Name="crudLink" Type="text" />
+  </EntityType>
+  <Association Name="FK_talent_ToTable">
+    <End Role="availability" Type="Self.availability" Multiplicity="1" />
+    <End Role="talent" Type="Self.talent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="availability">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="talent">
+        <PropertyRef Name="id_availability" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_talent_ToTable_1">
+    <End Role="besttime" Type="Self.besttime" Multiplicity="1" />
+    <End Role="talent" Type="Self.talent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="besttime">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="talent">
+        <PropertyRef Name="id_besttime" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="talentsModelStoreContainer">
+    <EntitySet Name="availability" EntityType="Self.availability" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="besttime" EntityType="Self.besttime" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="talent" EntityType="Self.talent" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_talent_ToTable" Association="Self.FK_talent_ToTable">
+      <End Role="availability" EntitySet="availability" />
+      <End Role="talent" EntitySet="talent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_talent_ToTable_1" Association="Self.FK_talent_ToTable_1">
+      <End Role="besttime" EntitySet="besttime" />
+      <End Role="talent" EntitySet="talent" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,519 @@
+﻿<style>
+    .body-content {
+        padding-top: 50px;
+    }
+
+    .checkbox {
+        padding: 0;
+        margin: 0;
+    }
+
+    .dropdown-menu {
+        overflow: auto !important;
+    }
+
+    .form-group div {
+        display: inline-block;
+        margin-right: 10px;
+    }
+</style>
+<h3>ZanetTI - Easy Talents</h3>
+</hr>
+
+
+    <form ng-controller="talentsCtrl" ng-submit="addTalent(talent,update)">
+        <div>
+            <table class="table table-striped">
+                <tr ng-repeat="talent in talents">
+                    <td><h6 class="my-0">{{talent.name_}} - {{talent.email}} <a href="#" class="btn btn-info" ng-click="editTalent(talent)">Editar</a> <a href="#" class="btn btn-danger" ng-click="deleteTalent(talent)">Excluir</a></h6> </td>
+                </tr>
+                <tr>
+                    <td></br></td>
+                </tr>
+                <tr>
+                    <td>
+                        Endereço de e-mail: <strong>*</strong></br>
+                        <input type="email" class="form-control" required ng-model="talent.email" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="text-info">Occupation area /Área de atuação</td>
+                </tr>
+                <tr>
+                    <td>
+                        Nome/Name: <strong>*</strong></br>
+                        <input type="text" class="form-control" required ng-model="talent.name_" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Skype: (please create an account if you don't have yet / bom criar caso não tenha): <strong>*</strong></br>
+                        <input type="text" class="form-control" required ng-model="talent.skype" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Telefone/Phone (Whatsapp): <strong>*</strong></br>
+                        <input type="text" class="form-control" required ng-model="talent.phone" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Linkedin:</br>
+                        <input type="text" class="form-control" ng-model="talent.linkedin" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Cidade / City <strong>*</strong></br>
+                        <input type="text" class="form-control" ng-model="talent.city" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Estado/ State <strong>*</strong></br>
+                        <input type="text" class="form-control" required ng-model="talent.state" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Portfolio:</br>
+                        <input type="text" class="form-control" ng-model="talent.portifolio" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label>What is your willingness to work today? / Qual é sua disponibilidade para trabalhar hoje? <strong>*</strong></label>
+                            <select class="custom-select d-block w-100" ng-model="talent.id_availability" ng-options="a.Id as a.desc for a in availabilities" required>
+                                <option value="">-- Select then willingness to work today --</option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label>What's the best time to work for you? / Pra você qual é o melhor horário para trabalhar? <strong>*</strong></label>
+                            <select class="custom-select d-block w-100" ng-model="talent.id_besttime" ng-options="b.Id as b.desc for b in besttimes" required>
+                                <option value="">-- Select the best time --</option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        What is your hourly salary requirements? / Qual sua pretensão salarial por hora? <strong>*</strong></br>
+                        <input type="text" class="form-control" required ng-model="talent.hourlySalary" ng-keypress="filterValue($event)" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="text-info">Bank Information / Informação bancária</td>
+                </tr>
+                <tr>
+                    <td>
+                        Name / Nome</br>
+                        <input type="text" class="form-control" ng-model="talent.bankYourName" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Only for Brazilians / CPF</br>
+                        <input type="text" class="form-control" ng-model="talent.bankCPF" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Agency / Agencia</br>
+                        <input type="text" class="form-control" ng-model="talent.bankAgency" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Account Type / Tipo de conta</br>
+                        <select class="custom-select d-block w-100" ng-model="talent.bankAccountType">
+                            <option value="c">Chain / Corrente</option>
+                            <option value="p">Savings / Poupança</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Account Number / Número da conta</br>
+                        <input type="text" ng-model="talent.bankAccountNumber" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="text-info">Knowledge / Conhecimentos</td>
+                </tr>
+                <tr>
+                    <td>
+                        Ionic <strong>*</strong>
+                        <select class="custom-select d-block w-100" ng-model="talent.ionic" required>
+                            <option value="0" selected>0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Android <strong>*</strong>
+                        <select class="custom-select d-block w-100" required ng-model="talent.android">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        IOS <strong>*</strong>
+                        <select class="custom-select d-block w-100" required ng-model="talent.ios">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        HTML
+                        <select class="custom-select d-block w-100" ng-model="talent.html">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Bootstrap <strong>*</strong>
+                        <select class="custom-select d-block w-100" ng-model="talent.bootstrap">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Jquery <strong>*</strong>
+                        <select class="custom-select d-block w-100" required ng-model="talent.jquery">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        AngularJs <strong>*</strong>
+                        <select class="custom-select d-block w-100" required ng-model="talent.angularjs">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        HTML
+                        <select class="custom-select d-block w-100" ng-model="talent.html">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Java
+                        <select class="custom-select d-block w-100" ng-model="talent.java">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        HTML
+                        <select class="custom-select d-block w-100" ng-model="talent.html">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Asp.Net MVC <strong>*</strong>
+                        <select class="custom-select d-block w-100" required ng-model="talent.aspnetMVC">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        C
+                        <select class="custom-select d-block w-100" ng-model="talent.languageC">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        C++
+                        <select class="custom-select d-block w-100" ng-model="talent.languageCPlusPlus">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Cake
+                        <select class="custom-select d-block w-100" ng-model="talent.cake">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Django
+                        <select class="custom-select d-block w-100" ng-model="talent.django">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Majento
+                        <select class="custom-select d-block w-100" ng-model="talent.majento">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        PHP <strong>*</strong>
+                        <select class="custom-select d-block w-100" required ng-model="talent.php">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Vue <strong>*</strong>
+                        <select class="custom-select d-block w-100" required ng-model="talent.vue">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Wordpress <strong>*</strong>
+                        <select class="custom-select d-block w-100" required ng-model="talent.wordpress">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Python
+                        <select class="custom-select d-block w-100" ng-model="talent.python">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Ruby
+                        <select class="custom-select d-block w-100" ng-model="talent.ruby">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        SQL Server
+                        <select class="custom-select d-block w-100" ng-model="talent.sqlServer">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        My SQL
+                        <select class="custom-select d-block w-100" ng-model="talent.mysql">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Salesforce
+                        <select class="custom-select d-block w-100" ng-model="talent.salesforce">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Photoshop
+                        <select class="custom-select d-block w-100" ng-model="talent.photoshop">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Illustrator
+                        <select class="custom-select d-block w-100" ng-model="talent.illustrator">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        SEO
+                        <select class="custom-select d-block w-100" ng-model="talent.seo">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Do you know any other language or framework that was not listed above? Tell us and evaluate yourself from 0 to 5. / Conhece mais alguma linguagem ou framework que não foi listado aqui em cima? Conte para nos e se auto avalie ainda de 0 a 5.</br>
+                        <input type="text" class="form-control" ng-model="talent.others" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Link CRUD</br>
+                        <input type="text" class="form-control" ng-model="talent.crudLink" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" class="btn badge-primary" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>

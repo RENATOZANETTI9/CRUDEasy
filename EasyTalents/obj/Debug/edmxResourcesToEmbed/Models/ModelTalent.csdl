@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="talentsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="talentsEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="availabilities" EntityType="talentsModel.availability" />
+    <EntitySet Name="besttimes" EntityType="talentsModel.besttime" />
+    <EntitySet Name="talents" EntityType="talentsModel.talent" />
+    <AssociationSet Name="FK_talent_ToTable" Association="talentsModel.FK_talent_ToTable">
+      <End Role="availability" EntitySet="availabilities" />
+      <End Role="talent" EntitySet="talents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_talent_ToTable_1" Association="talentsModel.FK_talent_ToTable_1">
+      <End Role="besttime" EntitySet="besttimes" />
+      <End Role="talent" EntitySet="talents" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="availability">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="desc" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="talents" Relationship="talentsModel.FK_talent_ToTable" FromRole="availability" ToRole="talent" />
+  </EntityType>
+  <EntityType Name="besttime">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="desc" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="talents" Relationship="talentsModel.FK_talent_ToTable_1" FromRole="besttime" ToRole="talent" />
+  </EntityType>
+  <EntityType Name="talent">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="email" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="name_" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="skype" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="phone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="linkedin" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="city" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="state" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="portifolio" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="id_availability" Type="Int32" Nullable="false" />
+    <Property Name="id_besttime" Type="Int32" Nullable="false" />
+    <Property Name="hourlySalary" Type="Int16" Nullable="false" />
+    <Property Name="bankYourName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="bankName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="bankCPF" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="bankAgency" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="bankAccountType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="bankAccountNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ionic" Type="Byte" Nullable="false" />
+    <Property Name="android" Type="Byte" Nullable="false" />
+    <Property Name="ios" Type="Byte" Nullable="false" />
+    <Property Name="html" Type="Byte" Nullable="false" />
+    <Property Name="css" Type="Byte" Nullable="false" />
+    <Property Name="bootstrap" Type="Byte" Nullable="false" />
+    <Property Name="jquery" Type="Byte" Nullable="false" />
+    <Property Name="angularJs" Type="Byte" Nullable="false" />
+    <Property Name="java" Type="Byte" Nullable="false" />
+    <Property Name="aspnetMVC" Type="Byte" Nullable="false" />
+    <Property Name="languageC" Type="Byte" Nullable="false" />
+    <Property Name="languageCPlusPlus" Type="Byte" Nullable="false" />
+    <Property Name="cake" Type="Byte" Nullable="false" />
+    <Property Name="django" Type="Byte" Nullable="false" />
+    <Property Name="majento" Type="Byte" Nullable="false" />
+    <Property Name="PHP" Type="Byte" Nullable="false" />
+    <Property Name="vue" Type="Byte" Nullable="false" />
+    <Property Name="wordperss" Type="Byte" Nullable="false" />
+    <Property Name="python" Type="Byte" Nullable="false" />
+    <Property Name="ruby" Type="Byte" Nullable="false" />
+    <Property Name="sqlServer" Type="Byte" Nullable="false" />
+    <Property Name="mysql" Type="Byte" Nullable="false" />
+    <Property Name="salesforce" Type="Byte" Nullable="false" />
+    <Property Name="photophop" Type="Byte" Nullable="false" />
+    <Property Name="illustrator" Type="Byte" Nullable="false" />
+    <Property Name="seo" Type="Byte" Nullable="false" />
+    <Property Name="others" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="crudLink" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="availability" Relationship="talentsModel.FK_talent_ToTable" FromRole="talent" ToRole="availability" />
+    <NavigationProperty Name="besttime" Relationship="talentsModel.FK_talent_ToTable_1" FromRole="talent" ToRole="besttime" />
+  </EntityType>
+  <Association Name="FK_talent_ToTable">
+    <End Type="talentsModel.availability" Role="availability" Multiplicity="1" />
+    <End Type="talentsModel.talent" Role="talent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="availability">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="talent">
+        <PropertyRef Name="id_availability" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_talent_ToTable_1">
+    <End Type="talentsModel.besttime" Role="besttime" Multiplicity="1" />
+    <End Type="talentsModel.talent" Role="talent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="besttime">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="talent">
+        <PropertyRef Name="id_besttime" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
